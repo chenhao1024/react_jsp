@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Input, Button, List } from 'antd'
+import TodoListUI from './TodoListUI'
 
 import store from './store/index'
 
@@ -17,7 +17,7 @@ class TodoList extends Component {
         this.changeInputValue = this.changeInputValue.bind(this)
         this.storeChange = this.storeChange.bind(this)
         this.clickBtn = this.clickBtn.bind(this)
-        // this.deletBtn = this.deletBtn.bind(this)
+        this.deletBtn = this.deletBtn.bind(this)
         store.subscribe(this.storeChange)
     }
     changeInputValue(e) {
@@ -37,20 +37,13 @@ class TodoList extends Component {
     }
     render() {
         return (
-            <div className='todo_wrap'>
-                <Input placeholder={this.state.inputValue} className='todo_input' onChange={this.changeInputValue} value={this.state.inputValue} />
-                <Button type='primary' onClick={this.clickBtn}>增加</Button>
-                <div className='todo_list'>
-                    <List
-                        bordered
-                        dataSource={this.state.list}
-                        renderItem={(item, index) => (<List.Item onClick={this.deletBtn.bind(this,index)}>{item}
-                        {/* <Button type='danger' onClick={this.deletBtn(index)}>删除</Button> */}
-                        </List.Item>)}
-
-                    />
-                </div>
-            </div>
+            <TodoListUI 
+                inputValue={this.state.inputValue}
+                list={this.state.list}
+                changeInputValue={this.changeInputValue}
+                clickBtn={this.clickBtn}
+                deletBtn={this.deletBtn}
+            />
         );
     }
 }
