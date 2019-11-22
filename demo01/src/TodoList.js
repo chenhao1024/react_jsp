@@ -5,8 +5,10 @@ import TodoListUI from './StatelessTodoListUI'
 import store from './store/index'
 
 
+import './mockdata/mockdata'
 
-import {changeInputAction, addItemAction, deleteItemAction} from './store/actionCreators'
+
+import {changeInputAction, addItemAction, deleteItemAction, getTodoList} from './store/actionCreators'
 
 
 class TodoList extends Component {
@@ -19,6 +21,10 @@ class TodoList extends Component {
         this.clickBtn = this.clickBtn.bind(this)
         this.deletBtn = this.deletBtn.bind(this)
         store.subscribe(this.storeChange)
+    }
+    componentDidMount(){
+        const action = getTodoList()
+        store.dispatch(action)
     }
     changeInputValue(e) {
         const action = changeInputAction(e.target.value)
