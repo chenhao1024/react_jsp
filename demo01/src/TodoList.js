@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import TodoListUI from './TodoListUI'
+import TodoListUI from './StatelessTodoListUI'
 
 import store from './store/index'
 
